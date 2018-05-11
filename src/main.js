@@ -10,7 +10,6 @@ var height = new Array();
 height[0] = 100;
 
 var index = 0;
-var xedni = 0;
 var value;
 
 console.log(height[0]);
