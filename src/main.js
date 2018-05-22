@@ -52,14 +52,6 @@ drawRandom();
 
 document.onkeydown = checkKey;
 
-function checkKey(e) {
-	switch (e.keyCode) {
-		case 39:
-			moveRight();
-			break;
-	}
-};
-
 function draw() {
 	for (let column = 0; column < Math.ceil(canvas.width / w); column++) {
 		for (let row = 0; row <= height[index]; row++) {
@@ -75,15 +67,38 @@ function draw() {
 			ctx.fillRect((w * index), (900 -h), w, h);
 			ctx.strokeRect((w * index), (900 - h), w, h);
 		}
+	console.log(height[index]);
+	console.log("drawn " + index + " rows");
+	index++;
+
 	}
 }
 
-function moveRight() {	
-	console.log(height);
-	random = getRandomInt((height[index] - 1), (height[index] + 1));
+function moveRight() {
+	index = height.length - 1;
+	if (height[index] <= 0) {
+		random = getRandomInt(height[index], height[index] +1);
+	} else if (height[index] >= 18) {
+		random = getRandomInt(height[index] - 1, height[index]);
+	} else {
+		random = getRandomInt(height[index] - 1, height[index] + 1);
+	}
 	height.shift();
 	height.push(random);
 	console.log(height);
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	index = 0;
 	draw();
 }
+
+function checkKey(e) {
+	switch (e.keyCode) {
+		case 39:
+			//moveRight();
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			//ctx.beginPath();
+			//console.log("cleared");
+			moveRight();
+			break;
+	}
+};
