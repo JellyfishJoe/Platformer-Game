@@ -94,10 +94,7 @@ function moveRight() {
 function checkKey(e) {
 	switch (e.keyCode) {
 		case 39:
-			//moveRight();
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			//ctx.beginPath();
-			//console.log("cleared");
 			moveRight();
 			break;
 	}
